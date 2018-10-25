@@ -5,6 +5,7 @@ import (
 	"log"
 )
 
+// SimpleEngine Type
 type SimpleEngine struct{}
 
 // Run Seeds
@@ -18,7 +19,7 @@ func (e SimpleEngine) Run(seeds ...Request) {
 		r := requests[0]
 		requests = requests[1:]
 
-		ParseResult, err := e.worker(r)
+		ParseResult, err := worker(r)
 		if err != nil {
 			continue
 		}
@@ -30,7 +31,7 @@ func (e SimpleEngine) Run(seeds ...Request) {
 	}
 }
 
-func (e SimpleEngine) worker(r Request) (ParseResult, error) {
+func worker(r Request) (ParseResult, error) {
 	log.Printf("Fetching %s\n", r.URL)
 	body, err := fetcher.Fetch(r.URL)
 	if err != nil {
