@@ -3,6 +3,7 @@ package parser
 import (
 	"crawler/engine"
 	"crawler/model"
+	"fmt"
 	"regexp"
 	"strconv"
 )
@@ -23,8 +24,8 @@ var occupationRe = regexp.MustCompile(`<td><span class="label">职业：</span><
 
 // ParseProfile 用户解析
 func ParseProfile(contents []byte, name string) engine.ParseResult {
+	fmt.Printf("------------> %s\n", name)
 	profile := model.Profile{}
-	profile.Name = name
 
 	age, err := strconv.Atoi(extractString(contents, ageRe))
 	if err == nil {
@@ -41,6 +42,7 @@ func ParseProfile(contents []byte, name string) engine.ParseResult {
 		profile.Weight = weight
 	}
 
+	profile.Name = name
 	profile.Marriage = extractString(contents, marriageRe)
 	profile.Income = extractString(contents, incomeRe)
 	profile.Gender = extractString(contents, genderRe)
