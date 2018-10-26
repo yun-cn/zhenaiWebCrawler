@@ -21,7 +21,7 @@ func (s QueuedScheduler) WorkerReady(w chan engine.Request) {
 func (s QueuedScheduler) Run() {
 	go func() {
 		var requestQ []engine.Request
-		var workerQ []engine.Request
+		var workerQ []chan engine.Request
 		for {
 			select {
 			case r := <-s.requestChan:
