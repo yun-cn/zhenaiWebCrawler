@@ -6,7 +6,7 @@ import (
 	"crawler/zhenai/parser"
 )
 
-// Main
+// Main func
 func main() {
 	e := engine.ConcurrentEngine{
 		Scheduler:   &scheduler.SimpleScheduler{},
